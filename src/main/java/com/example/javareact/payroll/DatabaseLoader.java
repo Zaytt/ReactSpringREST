@@ -7,16 +7,20 @@ import org.springframework.stereotype.Component;
 @Component
 public class DatabaseLoader implements CommandLineRunner{
 
-    private final EmployeeRepository repository;
+    private final EmployeeRepository employeeRepository;
+    private final VehicleRepository vehicleRepository;
+
 
     @Autowired
-    public DatabaseLoader(EmployeeRepository repository) {
-        this.repository = repository;
+    public DatabaseLoader(EmployeeRepository employeeRepository, VehicleRepository vehicleRepository) {
+        this.employeeRepository = employeeRepository;
+        this.vehicleRepository = vehicleRepository;
     }
 
     @Override
     public void run(String... args) throws Exception {
-        this.repository.save(new Employee("Frodo", "Baggins", "ring bearer"));
+        this.employeeRepository.save(new Employee("Frodo", "Baggins", "ring bearer"));
+        this.vehicleRepository.save(new Vehicle("Toyota Camry", "Blue, 2016"));
     }
 
 }
